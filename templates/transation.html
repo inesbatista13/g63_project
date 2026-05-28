@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+{% endblock %}
+{% block content %}
+<div class="dados">
+    <h1>Transation</h1>
+    <br>
+    <button id="edit"   type="button" {{butshow}} onclick="window.location.href = '/Transation?option=edit'"   class="button1">Edit</button>
+    <button id="delete" type="button" {{butshow}} onclick="window.location.href = '/Transation?option=delete'" class="button1">Delete</button>
+    <button id="insert" type="button" {{butshow}} onclick="window.location.href = '/Transation?option=insert'" class="button1">Insert</button>
+    <button id="save"   type="submit" form="form" {{butedit}} class="button1">Save</button>
+    <button id="cancel" type="button" {{butedit}} onclick="window.location.href = '/Transation?option=cancel'" class="button1">Cancel</button>
+    <button id="exit"   type="button" {{butshow}} onclick="window.location.href = '/Transation?option=exit'"   class="button1">Exit</button>
+    <br><br>
+    <form id="form" action="/Transation?option=save" method="post">
+        <label for="tid">Id:</label>
+        <input type="text" readonly id="tid" name="tid" value="{{tid}}" size="5"/>
+        <br><br>
+        <label for="supermarket_id">Supermarket:</label>
+        {% if butedit == 'enabled' %}
+            <select id="supermarket_id" name="supermarket_id">
+                {% for s in supermarkets %}
+                <option value="{{s.supermarket_id}}" {{'selected' if s.supermarket_id == supermarket_id else ''}}>
+                    {{s.name}} ({{s.supermarket_id}})
+                </option>
+                {% endfor %}
+            </select>
+        {% else %}
+            <input type="text" disabled value="{{supermarket_id}}" size="10"/>
+        {% endif %}
+        <br><br>
+        <label for="supplier_id">Supplier:</label>
+        {% if butedit == 'enabled' %}
+            <select id="supplier_id" name="supplier_id">
+                {% for s in suppliers %}
+                <option value="{{s.supplier_id}}" {{'selected' if s.supplier_id == supplier_id else ''}}>
+                    {{s.supplier_name}} ({{s.supplier_id}})
+                </option>
+                {% endfor %}
+            </select>
+        {% else %}
+            <input type="text" disabled value="{{supplier_id}}" size="10"/>
+        {% endif %}
+        <br><br>
+        <label for="delivery_date">Delivery Date:</label>
+        <input type="text" {{butedit}} id="delivery_date" name="delivery_date" value="{{delivery_date}}" size="12"/>
+        <br><br>
+        <label for="amount">Amount:</label>
+        <input type="text" {{butedit}} id="amount" name="amount" value="{{amount}}" size="10"/>
+    </form>
+    <br>
+    <button id="first"    type="button" {{butshow}} onclick="window.location.href = '/Transation?option=first'"    class="button1">First</button>
+    <button id="previous" type="button" {{butshow}} onclick="window.location.href = '/Transation?option=previous'" class="button1">Previous</button>
+    <button id="next"     type="button" {{butshow}} onclick="window.location.href = '/Transation?option=next'"     class="button1">Next</button>
+    <button id="last"     type="button" {{butshow}} onclick="window.location.href = '/Transation?option=last'"     class="button1">Last</button>
+</div>
+{% endblock %}
