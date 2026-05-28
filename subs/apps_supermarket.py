@@ -1,7 +1,6 @@
 """
 G63 — apps_supermarket.py
-Supermarket form handler
-Responsável: Membro 1
+
 """
 from flask import render_template, request, session
 from classes.supermarket import Supermarket
