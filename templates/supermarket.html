@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="dados">
+    <h1>Gestão de Supermercado</h1>
+
+    <div class="btn-group">
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=edit'" class="button1">Editar</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=delete'" class="button1 danger">Eliminar</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=insert'" class="button1">Inserir</button>
+        <button type="submit" form="form_data" {{butedit}} class="button1">Gravar</button>
+        <button type="button" {{butedit}} onclick="window.location.href='/Supermarket?option=cancel'" class="button1 secondary">Cancelar</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=exit'" class="button1 secondary">Sair</button>
+    </div>
+
+    <hr class="divider">
+
+    <form id="form_data" action="/Supermarket?option=save" method="post">
+
+        <div class="form-group">
+            <label for="sid">ID</label>
+            <input type="text" readonly id="sid" name="sid" value="{{sid}}" />
+        </div>
+
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" {{butedit}} id="name" name="name" value="{{name}}" required />
+        </div>
+
+        <div class="form-group">
+            <label for="opening_date">Data de Abertura</label>
+            <input type="text" {{butedit}} id="opening_date" name="opening_date" value="{{opening_date}}" placeholder="AAAA-MM-DD" />
+        </div>
+
+        <input type="hidden" name="salary" value="0">
+    </form>
+
+    <hr class="divider">
+
+    <div class="btn-group">
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=first'" class="button1 secondary">« Primeiro</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=previous'" class="button1 secondary">‹ Anterior</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=next'" class="button1 secondary">Próximo ›</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=last'" class="button1 secondary">Último »</button>
+    </div>
+</div>
+{% endblock %}

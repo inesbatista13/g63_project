@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+{% endblock %}
+{% block content %}
+<div class="dados">
+    <h1>Supplier</h1>
+    <br>
+    <button id="edit"   type="button" {{butshow}} onclick="window.location.href = '/Supplier?option=edit'"   class="button1">Edit</button>
+    <button id="delete" type="button" {{butshow}} onclick="window.location.href = '/Supplier?option=delete'" class="button1">Delete</button>
+    <button id="insert" type="button" {{butshow}} onclick="window.location.href = '/Supplier?option=insert'" class="button1">Insert</button>
+    <button id="save"   type="submit" form="form" {{butedit}} class="button1">Save</button>
+    <button id="cancel" type="button" {{butedit}} onclick="window.location.href = '/Supplier?option=cancel'" class="button1">Cancel</button>
+    <button id="exit"   type="button" {{butshow}} onclick="window.location.href = '/Supplier?option=exit'"   class="button1">Exit</button>
+    <br><br>
+    <form id="form" action="/Supplier?option=save" method="post">
+        <label for="sid">Id:</label>
+        <input type="text" readonly id="sid" name="sid" value="{{sid}}" size="5"/>
+        <br><br>
+        <label for="supplier_name">Supplier Name:</label>
+        <input type="text" {{butedit}} id="supplier_name" name="supplier_name" value="{{supplier_name}}" size="30"/>
+        <br><br>
+        <label for="supplier_type">Supplier Type:</label>
+        <input type="text" {{butedit}} id="supplier_type" name="supplier_type" value="{{supplier_type}}" size="20"/>
+    </form>
+    <br>
+    <button id="first"    type="button" {{butshow}} onclick="window.location.href = '/Supplier?option=first'"    class="button1">First</button>
+    <button id="previous" type="button" {{butshow}} onclick="window.location.href = '/Supplier?option=previous'" class="button1">Previous</button>
+    <button id="next"     type="button" {{butshow}} onclick="window.location.href = '/Supplier?option=next'"     class="button1">Next</button>
+    <button id="last"     type="button" {{butshow}} onclick="window.location.href = '/Supplier?option=last'"     class="button1">Last</button>
+</div>
+{% endblock %}
