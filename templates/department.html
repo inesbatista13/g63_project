@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+{% endblock %}
+{% block content %}
+<div class="dados">
+    <h1>Department</h1>
+    <br>
+    <button id="edit"   type="button" {{butshow}} onclick="window.location.href = '/Department?option=edit'"   class="button1">Edit</button>
+    <button id="delete" type="button" {{butshow}} onclick="window.location.href = '/Department?option=delete'" class="button1">Delete</button>
+    <button id="insert" type="button" {{butshow}} onclick="window.location.href = '/Department?option=insert'" class="button1">Insert</button>
+    <button id="save"   type="submit" form="form" {{butedit}} class="button1">Save</button>
+    <button id="cancel" type="button" {{butedit}} onclick="window.location.href = '/Department?option=cancel'" class="button1">Cancel</button>
+    <button id="exit"   type="button" {{butshow}} onclick="window.location.href = '/Department?option=exit'"   class="button1">Exit</button>
+    <br><br>
+    <form id="form" action="/Department?option=save" method="post">
+        <label for="did">Id:</label>
+        <input type="text" readonly id="did" name="did" value="{{did}}" size="5"/>
+        <br><br>
+        <label for="department_info">Department Info:</label>
+        <input type="text" {{butedit}} id="department_info" name="department_info" value="{{department_info}}" size="30"/>
+        <br><br>
+        <label for="supermarket_id">Supermarket:</label>
+        {% if butedit == 'enabled' %}
+            <select id="supermarket_id" name="supermarket_id">
+                {% for s in supermarkets %}
+                <option value="{{s.supermarket_id}}" {{'selected' if s.supermarket_id == supermarket_id else ''}}>
+                    {{s.name}} ({{s.supermarket_id}})
+                </option>
+                {% endfor %}
+            </select>
+        {% else %}
+            <input type="text" disabled value="{{supermarket_id}}" size="10"/>
+        {% endif %}
+    </form>
+    <br>
+    <button id="first"    type="button" {{butshow}} onclick="window.location.href = '/Department?option=first'"    class="button1">First</button>
+    <button id="previous" type="button" {{butshow}} onclick="window.location.href = '/Department?option=previous'" class="button1">Previous</button>
+    <button id="next"     type="button" {{butshow}} onclick="window.location.href = '/Department?option=next'"     class="button1">Next</button>
+    <button id="last"     type="button" {{butshow}} onclick="window.location.href = '/Department?option=last'"     class="button1">Last</button>
+</div>
+{% endblock %}
