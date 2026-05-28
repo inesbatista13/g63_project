@@ -1,7 +1,5 @@
 """
 G63 — apps_transation.py
-Transation form handler
-Responsável: Membro 3
 """
 from flask import render_template, request, session
 from classes.transation  import Transation
