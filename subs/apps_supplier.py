@@ -1,7 +1,6 @@
 """
 G63 — apps_supplier.py
-Supplier form handler
-Responsável: Membro 3
+
 """
 from flask import render_template, request, session
 from classes.supplier import Supplier
