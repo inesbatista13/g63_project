@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+{% endblock %}
+{% block content %}
+<div class="dados">
+    <img src="{{ url_for('static', filename='images/Sample_User_Icon.png') }}" alt="User" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin-bottom:12px;opacity:0.7;">
+    <h1>Users</h1>
+
+    <div style="margin-bottom:18px;">
+        <button type="button" {{butshow}} onclick="window.location.href='/Userlogin?option=edit'" class="button1">✏️ Edit</button>
+        {% if group == "admin" %}
+            <button type="button" {{butshow}} onclick="confirmDelete('/Userlogin?option=delete')" class="button1 btn-danger">🗑 Delete</button>
+            <button type="button" {{butshow}} onclick="window.location.href='/Userlogin?option=insert'" class="button1 btn-success">＋ Insert</button>
+        {% endif %}
+        <button type="submit" form="form" {{butedit}} class="button1">💾 Save</button>
+        <button type="button" {{butedit}} onclick="window.location.href='/Userlogin?option=cancel'" class="button1 btn-ghost">✕ Cancel</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/'" class="button1 btn-ghost">← Back</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <form id="form" action="/Userlogin?option=save" method="post">
+        <input type="hidden" name="id" value="{{ id }}"/>
+        {% if group == "admin" %}
+            <label for="user">Username</label>
+            <input type="text" {% if butedit == "disabled" %}disabled{% endif %} id="user" name="user" value="{{ user }}" placeholder="Username"/>
+            <label for="usergroup">Group</label>
+            {% if butedit != "disabled" %}
+                <select id="usergroup" name="usergroup">
+                    <option value="admin" {{ 'selected' if usergroup == 'admin' else '' }}>admin</option>
+                    <option value="user"  {{ 'selected' if usergroup == 'user'  else '' }}>user</option>
+                </select>
+            {% else %}
+                <input type="text" disabled id="usergroup" name="usergroup" value="{{ usergroup }}"/>
+            {% endif %}
+        {% else %}
+            <label for="user">Username</label>
+            <input type="text" disabled id="user" name="user" value="{{ user }}"/>
+            <label for="usergroup">Group</label>
+            <input type="text" disabled id="usergroup" name="usergroup" value="{{ usergroup }}"/>
+        {% endif %}
+        <label for="password">New Password</label>
+        <input type="password" {% if butedit == "disabled" %}disabled{% endif %} id="password" name="password" placeholder="Leave blank to keep current"/>
+    </form>
+
+    {% if msg %}
+        <p class="{{ 'msg-success' if 'success' in msg.lower() or 'saved' in msg.lower() else 'msg-error' }}">{{ msg }}</p>
+    {% endif %}
+
+    <div class="divider"></div>
+
+    {% if group == "admin" %}
+    <div>
+        <button type="button" {{butshow}} onclick="window.location.href='/Userlogin?option=first'"    class="button1 btn-nav">⏮ First</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Userlogin?option=previous'" class="button1 btn-nav">◀ Prev</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Userlogin?option=next'"     class="button1 btn-nav">Next ▶</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Userlogin?option=last'"     class="button1 btn-nav">Last ⏭</button>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
