@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-(2026) objective: class Department
-@author: admin
-"""
 from classes.gclass import Gclass
 
 class Department(Gclass):
