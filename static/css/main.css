@@ -1,0 +1,539 @@
+/* =================================================================
+   G63 Supermarket Management System
+   Visual Identity — Warm Institutional / Portuguese Editorial
+   Fonts: DM Serif Display (headings) + Jost (body)
+   ================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* ----------------------------------------------------------------
+   DESIGN TOKENS
+   ---------------------------------------------------------------- */
+:root {
+  /* Backgrounds */
+  --bg-page:      #f2e9dc;
+  --bg-surface:   #ffffff;
+  --bg-inset:     #ede4d7;
+  --bg-hover:     #e8ddd0;
+
+  /* Navigation */
+  --nav-bg:       #1a130c;
+  --nav-rule:     #c14828;
+
+  /* Typography */
+  --text-hi:      #1a130c;
+  --text-body:    #3a2e25;
+  --text-low:     #8a7b6e;
+  --text-faint:   #b5a898;
+  --font-serif:   'DM Serif Display', Georgia, serif;
+  --font-sans:    'Jost', 'Helvetica Neue', sans-serif;
+
+  /* Accent palette */
+  --accent:       #c14828;   /* terracotta */
+  --accent-dark:  #952f13;
+  --accent-tint:  rgba(193,72,40,0.08);
+  --accent-ring:  rgba(193,72,40,0.20);
+  --green:        #2c5040;
+  --green-dark:   #1d3629;
+  --green-tint:   rgba(44,80,64,0.08);
+  --red:          #a83030;
+  --red-tint:     rgba(168,48,48,0.08);
+  --red-ring:     rgba(168,48,48,0.22);
+
+  /* Borders */
+  --border:       #d9cfc3;
+  --border-lo:    #ede4d7;
+
+  /* Shadows */
+  --shadow-xs:    0 1px 4px rgba(26,19,12,0.06);
+  --shadow-sm:    0 2px 10px rgba(26,19,12,0.08);
+  --shadow-md:    0 6px 24px rgba(26,19,12,0.10);
+  --shadow-lg:    0 16px 48px rgba(26,19,12,0.14);
+
+  /* Geometry */
+  --radius-xs:    3px;
+  --radius-sm:    5px;
+  --radius-md:    8px;
+  --radius-lg:    10px;
+}
+
+/* ----------------------------------------------------------------
+   RESET & BASE
+   ---------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-body);
+  background-color: var(--bg-page);
+  /* Subtle warm grain-like texture via layered radial gradients */
+  background-image:
+    radial-gradient(ellipse 80% 60% at 10% 80%, rgba(193,72,40,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(44,80,64,0.04) 0%, transparent 55%);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ----------------------------------------------------------------
+   NAVIGATION BAR
+   ---------------------------------------------------------------- */
+nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.menu {
+  margin: 0;
+  padding: 0 24px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  min-height: 54px;
+  background: var(--nav-bg);
+  border-bottom: 2px solid var(--nav-rule);
+  box-shadow: 0 2px 14px rgba(0,0,0,0.35);
+}
+
+/* Brand */
+.brand { margin-right: 14px; }
+.brand a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.brand a span:first-child { font-size: 1.1rem; }
+.brand-text {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Nav links */
+.button {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(255,255,255,0.52);
+  padding: 6px 13px;
+  border-radius: var(--radius-xs);
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.button:hover {
+  color: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.07);
+}
+.nav-active {
+  color: #e07050 !important;
+  background: rgba(193,72,40,0.18) !important;
+}
+
+/* Spacer */
+.nav-spacer { flex: 1; }
+
+/* User badge */
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  padding: 4px 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-xs);
+  margin: 0 6px;
+}
+.user-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--nav-rule);
+}
+
+/* Logoff */
+.btn-logoff { color: rgba(255,255,255,0.35); }
+.btn-logoff:hover {
+  color: rgba(220,100,80,0.9) !important;
+  background: rgba(168,48,48,0.14) !important;
+}
+
+/* ----------------------------------------------------------------
+   MAIN CONTENT CARD  (.dados)
+   ---------------------------------------------------------------- */
+.dados {
+  width: 92%;
+  max-width: 660px;
+  margin: 48px auto;
+  padding: 40px 46px;
+  text-align: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* ----------------------------------------------------------------
+   TYPOGRAPHY
+   ---------------------------------------------------------------- */
+h1 {
+  margin: 0 0 26px 0;
+  font-family: var(--font-serif);
+  font-size: 1.95rem;
+  font-weight: 400;
+  color: var(--text-hi);
+  letter-spacing: 0.3px;
+}
+
+label {
+  display: block;
+  font-size: 0.67rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  color: var(--text-low);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 5px;
+  text-align: left;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ----------------------------------------------------------------
+   FORM INPUTS & SELECTS
+   ---------------------------------------------------------------- */
+input, select {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 18px;
+  padding: 10px 13px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-hi);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+}
+input::placeholder { color: var(--text-faint); }
+
+input:focus, select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+  background: #fff;
+}
+input:disabled, select:disabled {
+  background: var(--bg-inset);
+  color: var(--text-low);
+  border-color: var(--border-lo);
+  cursor: not-allowed;
+  opacity: 1;
+}
+input[readonly] {
+  background: var(--bg-inset);
+  color: var(--text-low);
+  border-color: var(--border-lo);
+  cursor: default;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.4;
+  cursor: pointer;
+}
+select option {
+  background-color: #fff;
+  color: var(--text-hi);
+}
+
+/* ----------------------------------------------------------------
+   BUTTON SYSTEM
+   ---------------------------------------------------------------- */
+
+/* Base — dark solid (primary action) */
+.button1 {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 9px 17px;
+  margin: 3px;
+  border-radius: var(--radius-xs);
+  border: 1px solid transparent;
+  background: var(--text-hi);
+  color: rgba(255,255,255,0.88);
+  transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+}
+.button1:hover {
+  background: var(--accent);
+  color: #fff;
+}
+.button1:disabled {
+  background: var(--bg-inset);
+  border-color: var(--border);
+  color: var(--text-faint);
+  cursor: not-allowed;
+}
+
+/* Danger — outline style */
+.btn-danger {
+  background: transparent;
+  border-color: var(--red);
+  color: var(--red);
+}
+.btn-danger:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+/* Ghost — very subtle */
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-low);
+}
+.btn-ghost:hover {
+  background: var(--bg-inset);
+  border-color: var(--border);
+  color: var(--text-body);
+}
+
+/* Navigation first/prev/next/last */
+.btn-nav {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-low);
+  font-size: 0.68rem;
+  letter-spacing: 0.5px;
+}
+.btn-nav:hover {
+  background: var(--text-hi);
+  border-color: var(--text-hi);
+  color: rgba(255,255,255,0.88);
+}
+
+/* Success / insert */
+.btn-success {
+  background: transparent;
+  border-color: var(--green);
+  color: var(--green);
+}
+.btn-success:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+
+/* ----------------------------------------------------------------
+   FEEDBACK MESSAGES
+   ---------------------------------------------------------------- */
+.msg-error {
+  display: inline-block;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.83rem;
+  font-weight: 500;
+  margin: 8px 0;
+  background: var(--red-tint);
+  border: 1px solid var(--red-ring);
+  color: var(--red);
+}
+.msg-success {
+  display: inline-block;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.83rem;
+  font-weight: 500;
+  margin: 8px 0;
+  background: var(--green-tint);
+  border: 1px solid rgba(44,80,64,0.22);
+  color: var(--green);
+}
+
+/* ----------------------------------------------------------------
+   DIVIDER
+   ---------------------------------------------------------------- */
+.divider {
+  height: 1px;
+  background: var(--border-lo);
+  margin: 22px 0;
+}
+
+/* ----------------------------------------------------------------
+   TABLES
+   ---------------------------------------------------------------- */
+table {
+  width: 88%;
+  margin: 28px auto;
+  border-collapse: collapse;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+th {
+  background: var(--nav-bg);
+  padding: 10px 16px;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+td {
+  padding: 11px 16px;
+  font-size: 0.88rem;
+  color: var(--text-body);
+  border-top: 1px solid var(--border-lo);
+}
+tr:hover td { background: var(--bg-inset); }
+
+/* ----------------------------------------------------------------
+   LOGIN PAGE
+   ---------------------------------------------------------------- */
+.login-wrap {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.login-card {
+  width: 100%;
+  max-width: 390px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 50px 44px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+.login-logo { font-size: 2.2rem; margin-bottom: 10px; }
+.login-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0 0 6px 0;
+  color: var(--text-hi);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.login-sub {
+  color: var(--text-faint);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin: 0 0 32px 0;
+  text-transform: uppercase;
+}
+
+/* ----------------------------------------------------------------
+   MODAL
+   ---------------------------------------------------------------- */
+#modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,19,12,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+#modal-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--red);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  max-width: 350px;
+  width: 90%;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+/* Override the white inline colors baked into base.html */
+#modal-box p { color: var(--text-low) !important; }
+#modal-msg   { color: var(--text-hi)  !important; font-weight: 600; }
+
+/* ----------------------------------------------------------------
+   CHARTS PAGE
+   ---------------------------------------------------------------- */
+.chart-wrap {
+  width: 92%;
+  max-width: 960px;
+  margin: 48px auto;
+  padding: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 22px;
+  margin-top: 28px;
+}
+.chart-card {
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  text-align: center;
+}
+.chart-card img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+.chart-card-title {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-low);
+  margin-top: 11px;
+}
+
+/* ----------------------------------------------------------------
+   INDEX / HERO IMAGE
+   ---------------------------------------------------------------- */
+.index-img {
+  display: block;
+  margin: 28px auto 0;
+  width: 100%;
+  max-width: 560px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
