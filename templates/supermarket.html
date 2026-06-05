@@ -9,12 +9,12 @@
     <h1>Gestão de Supermercado</h1>
 
     <div class="btn-group">
-        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=edit'" class="button1">Editar</button>
-        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=delete'" class="button1 danger">Eliminar</button>
-        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=insert'" class="button1">Inserir</button>
-        <button type="submit" form="form_data" {{butedit}} class="button1">Gravar</button>
-        <button type="button" {{butedit}} onclick="window.location.href='/Supermarket?option=cancel'" class="button1 secondary">Cancelar</button>
-        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=exit'" class="button1 secondary">Sair</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=edit'" class="button1">Edit</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=delete'" class="button1 danger">Delete</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=insert'" class="button1">Insert</button>
+        <button type="submit" form="form_data" {{butedit}} class="button1">Save</button>
+        <button type="button" {{butedit}} onclick="window.location.href='/Supermarket?option=cancel'" class="button1 secondary">Cancel</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=exit'" class="button1 secondary">Exit</button>
     </div>
 
     <hr class="divider">
@@ -22,17 +22,17 @@
     <form id="form_data" action="/Supermarket?option=save" method="post">
 
         <div class="form-group">
-            <label for="sid">ID</label>
+            <label for="sid">ID:</label>
             <input type="text" readonly id="sid" name="sid" value="{{sid}}" />
         </div>
 
         <div class="form-group">
-            <label for="name">Nome</label>
+            <label for="name">Supermarket name:</label>
             <input type="text" {{butedit}} id="name" name="name" value="{{name}}" required />
         </div>
 
         <div class="form-group">
-            <label for="opening_date">Data de Abertura</label>
+            <label for="opening_date">Opening Date</label>
             <input type="text" {{butedit}} id="opening_date" name="opening_date" value="{{opening_date}}" placeholder="AAAA-MM-DD" />
         </div>
 
@@ -42,10 +42,10 @@
     <hr class="divider">
 
     <div class="btn-group">
-        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=first'" class="button1 secondary">« Primeiro</button>
-        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=previous'" class="button1 secondary">‹ Anterior</button>
-        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=next'" class="button1 secondary">Próximo ›</button>
-        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=last'" class="button1 secondary">Último »</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=first'" class="button1 secondary">First</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=previous'" class="button1 secondary">Previous</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=next'" class="button1 secondary">Next</button>
+        <button type="button" {{butshow}} onclick="window.location.href='/Supermarket?option=last'" class="button1 secondary">Last</button>
     </div>
 </div>
 {% endblock %}
